@@ -1,0 +1,6 @@
+[submodule "docker-demo-bot"]
+	path = docker-demo-bot
+	url = https://github.com/owencraig/docker-demo-bot.git
+[submodule "docker-demo-translator"]
+	path = docker-demo-translator
+	url = https://github.com/owencraig/docker-demo-translator

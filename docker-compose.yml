@@ -1,0 +1,23 @@
+bot:
+    build: ./docker-demo-bot
+    links:
+        - lb
+    environment:
+        TRANSLATE_HOST: "lb"
+        BOT_TOKEN: '${BOT_TOKEN}'
+lb:
+    image: jwilder/nginx-proxy
+    links:
+        - translator
+    volumes:
+        - /var/run/docker.sock:/tmp/docker.sock:ro
+    ports:
+        - "80:5000"
+translator:
+    build: https://github.com/owencraig/docker-demo-translator.git
+    environment:
+        APP_NAME: translatotron
+        VIRTUAL_HOST: "lb"
+        COOL_DOWN: 3000
+    expose:
+        - "3000"
